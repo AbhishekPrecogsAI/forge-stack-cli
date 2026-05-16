@@ -1,0 +1,8 @@
+import { env } from "./config/env.js";
+import { app } from "./app.js";
+
+export function startServer() {
+  return app.listen(env.PORT, () => {
+    console.log(`Server listening on http://localhost:${env.PORT}`);
+  });
+}
