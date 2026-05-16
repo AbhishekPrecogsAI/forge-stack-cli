@@ -1,5 +1,6 @@
 import fs from "fs-extra";
 import path from "path";
+import { fileURLToPath } from "url";
 
 type GenerateOptions = {
   projectName: string;
@@ -23,15 +24,23 @@ export async function generateTemplate(
       ? "fastapi-py"
       : `express-${options.language}`;
 
-  const templatePath = path.join(
-    process.cwd(),
-    "src/templates",
-    templateName
-  );
+  const moduleDir = path.dirname(fileURLToPath(import.meta.url));
+  const templateCandidates = [
+    path.resolve(moduleDir, "../templates", templateName),
+    path.resolve(moduleDir, "../../src/templates", templateName),
+    path.resolve(process.cwd(), "src/templates", templateName)
+  ];
 
-  const exists = await fs.pathExists(templatePath);
+  let templatePath: string | undefined;
 
-  if (!exists) {
+  for (const candidate of templateCandidates) {
+    if (await fs.pathExists(candidate)) {
+      templatePath = candidate;
+      break;
+    }
+  }
+
+  if (!templatePath) {
     throw new Error(`Template not found: ${templateName}`);
   }
 

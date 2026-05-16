@@ -97,17 +97,18 @@ function printNextSteps(options: {
 }
 
 export async function createProject() {
-  console.clear();
+  try {
+    console.clear();
 
-  p.intro(color.bgCyan(color.black(" Forge Stack v1 ")));
+    p.intro(color.bgCyan(color.black(" Forge Stack v1 ")));
 
-  const projectNameInput = await p.text({
-    message: "Project name?",
-    placeholder: "my-app",
-    validate(value) {
-      if (!value) return "Project name is required";
-    }
-  });
+    const projectNameInput = await p.text({
+      message: "Project name?",
+      placeholder: "my-app",
+      validate(value) {
+        if (!value) return "Project name is required";
+      }
+    });
 
   if (p.isCancel(projectNameInput)) {
     p.cancel("Operation cancelled.");
@@ -258,17 +259,23 @@ export async function createProject() {
     spinner.stop("Dependencies installed");
   }
 
-  p.outro(color.green("Forge Stack completed successfully"));
+    p.outro(color.green("Forge Stack completed successfully"));
 
-  printNextSteps({
-    framework: frameworkValue,
-    language: String(language),
-    packageManager: String(packageManager),
-    projectSlug,
-    installDependenciesNow: Boolean(installDependenciesNow),
-    tailwind: Boolean(tailwindInput),
-    virtualEnv: Boolean(virtualEnvInput),
-    celery: Boolean(celeryInput),
-    docker: Boolean(dockerInput)
-  });
+    printNextSteps({
+      framework: frameworkValue,
+      language: String(language),
+      packageManager: String(packageManager),
+      projectSlug,
+      installDependenciesNow: Boolean(installDependenciesNow),
+      tailwind: Boolean(tailwindInput),
+      virtualEnv: Boolean(virtualEnvInput),
+      celery: Boolean(celeryInput),
+      docker: Boolean(dockerInput)
+    });
+  } catch (error) {
+    p.outro(color.red("Project creation failed"));
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(message);
+    process.exitCode = 1;
+  }
 }
