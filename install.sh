@@ -37,6 +37,12 @@ log "Package: ${PACKAGE}"
 log "Channel: latest"
 warn "This will install the newest published version from npm."
 
+if command -v forge-stack >/dev/null 2>&1; then
+  OLD_BINARY="$(command -v forge-stack)"
+  warn "Removing existing forge-stack binary at ${OLD_BINARY}."
+  rm -f "$OLD_BINARY"
+fi
+
 if npm install -g "$INSTALL_TARGET"; then
   ok "Forge Stack installed successfully."
   printf "%b\n" "Run: forge-stack create"
