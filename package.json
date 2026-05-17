@@ -1,6 +1,6 @@
 {
   "name": "@abhisahani/forge-stack",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "type": "module",
   "bin": {
     "forge-stack": "./dist/index.js"
