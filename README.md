@@ -43,14 +43,14 @@ npm publish
 After publishing, users can install and run the CLI with:
 
 ```bash
-npm install -g @abhishek/forge-stack
+npm install -g @abhisahani/forge-stack
 forge-stack create
 ```
 
 You can also use `npx`:
 
 ```bash
-npx @abhishek/forge-stack create
+npx @abhisahani/forge-stack create
 ```
 
 ## Curl Install
@@ -58,7 +58,7 @@ npx @abhishek/forge-stack create
 If you want a curl-based installer, host `install.sh` in your repo and run:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/<you>/<repo>/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/AbhishekPrecogsAI/forge-stack-cli/main/install.sh | bash
 ```
 
-That script installs the latest published npm version of `@abhishek/forge-stack`.
+That script installs the latest published npm version of `@abhisahani/forge-stack`.

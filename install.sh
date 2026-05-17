@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PACKAGE="@abhishek/forge-stack"
+PACKAGE="@abhisahani/forge-stack"
 INSTALL_TARGET="${PACKAGE}@latest"
 
 reset="\033[0m"
