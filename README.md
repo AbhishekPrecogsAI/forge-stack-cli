@@ -31,3 +31,34 @@ npm run build
 npm link
 forge-stack create
 ```
+
+## Publish
+
+```bash
+npm publish
+```
+
+## Install
+
+After publishing, users can install and run the CLI with:
+
+```bash
+npm install -g @abhishek/forge-stack
+forge-stack create
+```
+
+You can also use `npx`:
+
+```bash
+npx @abhishek/forge-stack create
+```
+
+## Curl Install
+
+If you want a curl-based installer, host `install.sh` in your repo and run:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/<you>/<repo>/main/install.sh | bash
+```
+
+That script installs the latest published npm version of `@abhishek/forge-stack`.
